@@ -1,7 +1,7 @@
 import React from "react";
-import ErrorItem from "../other/error_item.jsx";
+import ErrorItem from "../other/errorItem.jsx";
 import { connect } from "react-redux";
-import { login, signup, clearErrors } from "../../actions/session_actions.js";
+import { login, signup, clearErrors } from "../../actions/sessionActions.js";
 
 class SignupForm extends React.Component {
   constructor(props) {

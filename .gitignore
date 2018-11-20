@@ -46,6 +46,7 @@ bower.json
 
 # Ignore node_modules
 node_modules/
+/client/node_modules/
 
 # Ignore precompiled javascript packs
 /public/packs
@@ -60,3 +61,5 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+.gitignore

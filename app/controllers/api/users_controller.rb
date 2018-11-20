@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(email: params[:email])
     render 'api/users/show.json.jbuilder'
   end
 

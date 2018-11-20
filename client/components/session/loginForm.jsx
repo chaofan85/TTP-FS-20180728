@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
 
   guestLogin() {
     const guest = {
-      username: "guest",
+      email: "guest@stocker.com",
       password: "iamguest"
     };
     this.props.login(guest);
@@ -47,9 +47,9 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            value={this.state.username}
-            placeholder="Username"
-            onChange={this.handleChange("username")}
+            value={this.state.email}
+            placeholder="Email"
+            onChange={this.handleChange("email")}
           />
           <br />
           <input
@@ -77,7 +77,7 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const userInfo = {
-    username: "",
+    email: "",
     password: ""
   };
 

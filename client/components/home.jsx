@@ -6,11 +6,11 @@ import SessionForm from "./session/sessionForm";
 
 class Home extends React.Component {
   render() {
+    // console.log(this.props.currentUser);
     if (this.props.currentUser) {
       return (
         <div className="main">
-          <HeaderContainer />
-          <PhotoIndex />
+          <div>hello</div>
         </div>
       );
     } else {
@@ -24,6 +24,7 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
+  // console.log(state.session);
   return {
     currentUser: state.session.currentUser
   };

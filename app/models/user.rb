@@ -2,7 +2,8 @@ class User < ApplicationRecord
   validates :username, :email, :password_digest, :session_token, presence: true
   validates :username, :email, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
-
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
+  
   attr_reader :password
 
   def self.find_by_credentials(username, password)

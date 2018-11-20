@@ -3,7 +3,7 @@ var webpack = require("webpack");
 
 module.exports = {
   context: __dirname,
-  entry: "./client/index.jsx",
+  entry: "./client/index.js",
   output: {
     path: path.resolve(__dirname, "app/assets/javascripts"),
     filename: "bundle.js"

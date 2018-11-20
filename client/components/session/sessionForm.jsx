@@ -19,7 +19,7 @@ class SessionForm extends React.Component {
         <div className="index-form">
           <div className="login-container">
             <h2>Instaview</h2>
-            <LoginFormContainer />
+            <LoginForm />
           </div>
           <div className="signup-link">
             <p>
@@ -37,7 +37,7 @@ class SessionForm extends React.Component {
             <p className="slogan">
               Sign up to see photos <br /> from your friends.
             </p>
-            <SignupFormContainer />
+            <SignupForm />
           </div>
           <div className="login-link">
             <p>

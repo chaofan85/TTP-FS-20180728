@@ -1,9 +1,9 @@
 import React from "react";
 import Home from "./home";
 import { Route, Switch } from "react-router-dom";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
-import SignupFormContainer from "./session/signup_form_container";
-import LoginFormContainer from "./session/login_form_container";
+import { AuthRoute, ProtectedRoute } from "../util/routeUtil";
+import SignupFormContainer from "./session/signupForm";
+import LoginFormContainer from "./session/loginForm";
 
 const App = () => (
   <div className="app">

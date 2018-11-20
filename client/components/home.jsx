@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logout } from "../actions/session_actions.js";
-import SessionForm from "./session/session_form";
+import { logout } from "../actions/sessionActions.js";
+import SessionForm from "./session/sessionForm";
 // import HeaderContainer from './header_container';
 
 class Home extends React.Component {

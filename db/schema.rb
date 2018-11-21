@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20181119233453) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
+    t.decimal "balance", precision: 11, scale: 2, default: "5000.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true

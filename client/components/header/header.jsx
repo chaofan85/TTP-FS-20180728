@@ -8,7 +8,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <div>Stocker</div>
+        <div className="logo">$tocker</div>
         <UserHeader />
       </header>
     );

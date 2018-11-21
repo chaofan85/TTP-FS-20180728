@@ -17,7 +17,9 @@ class UserHeader extends Component {
     console.log(this.props);
     return this.props.currentUser ? (
       <div className="user-panel">
-        <div>Welcome, {this.props.currentUser.username}</div>
+        <div className="welcome">
+          Welcome, {this.props.currentUser.username}
+        </div>
         <button onClick={this.userLogout}>Log Out</button>
       </div>
     ) : null;

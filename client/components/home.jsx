@@ -6,7 +6,6 @@ import SessionForm from "./session/sessionForm";
 
 class Home extends React.Component {
   render() {
-    console.log(this.props.currentUser.balance - 5.23);
     if (this.props.currentUser) {
       return (
         <div className="main">

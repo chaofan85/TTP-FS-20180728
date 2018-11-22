@@ -1,6 +1,7 @@
 import React from "react";
 import SignupForm from "./signupForm";
 import LoginForm from "./loginForm";
+import "./session.css";
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -18,7 +19,6 @@ class SessionForm extends React.Component {
       return (
         <div className="index-form">
           <div className="login-container">
-            <h2>Stockers</h2>
             <LoginForm />
           </div>
           <div className="signup-link">
@@ -33,8 +33,6 @@ class SessionForm extends React.Component {
       return (
         <section className="index-form">
           <div className="signup-container">
-            <h2>Stocker</h2>
-            <p className="slogan">something</p>
             <SignupForm />
           </div>
           <div className="login-link">

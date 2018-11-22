@@ -18,7 +18,7 @@ class UserHeader extends Component {
     return this.props.currentUser ? (
       <div className="user-panel">
         <div className="welcome">
-          Welcome, {this.props.currentUser.username}
+          Welcome, {this.props.currentUser.username}!
         </div>
         <button onClick={this.userLogout}>Log Out</button>
       </div>

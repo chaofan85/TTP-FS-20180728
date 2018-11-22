@@ -22,19 +22,21 @@ header {
 
 .user-panel {
   width: 250px;
-  /* display: inline-block; */
   display: flex;
   justify-content: space-around;
+  font-family: "Lato", sans-serif;
 }
 
 .welcome {
   width: 150px;
-  padding-top: 10px;
+  padding-top: 15px;
+  font-size: 18px;
 }
 
 button {
   width: 80px;
-  height: 40px;
-  display: inline-block;
-  vertical-align: middle;
+  height: 35px;
+  margin-top: 10px;
+  font-size: 15px;
+  cursor: pointer;
 }

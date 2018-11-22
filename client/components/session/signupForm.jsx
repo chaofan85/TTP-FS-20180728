@@ -67,20 +67,7 @@ class SignupForm extends React.Component {
           />
           <br />
           <button className="signup-button">Sign Up</button>
-          <p className="polocy">
-            By signing up, you agree to our Terms & Privacy Policy.
-          </p>
         </form>
-        <div>
-          <div className="or">
-            <div className="line" />
-            <div className="or-text">OR</div>
-            <div className="line" />
-          </div>
-          <button className="guest-button" onClick={this.guestLogin}>
-            Login as Guest
-          </button>
-        </div>
       </div>
     );
   }

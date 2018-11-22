@@ -60,16 +60,7 @@ class LoginForm extends React.Component {
           />
           <br />
           <button className="login-button">Log In</button>
-          <p className="forgot">Forgot password?</p>
         </form>
-        <div className="or">
-          <div className="line" />
-          <div className="or-text">OR</div>
-          <div className="line" />
-        </div>
-        <button className="guest-button" onClick={this.guestLogin}>
-          Login as Guest
-        </button>
       </div>
     );
   }

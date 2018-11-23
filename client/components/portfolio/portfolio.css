@@ -1,0 +1,19 @@
+.portfolio-area {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin-top: 100px;
+}
+
+.stock-list,
+.stock-purchase {
+  width: 45%;
+  border: 1px solid black;
+}
+
+.vertical-line {
+  border-left: 2px solid green;
+  height: 200px;
+}

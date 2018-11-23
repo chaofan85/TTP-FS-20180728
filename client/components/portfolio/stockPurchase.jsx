@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import searchSymbol from "../../actions/stockActions";
 import "./portfolio.css";
 
 class StockPurchase extends Component {
@@ -20,9 +21,7 @@ class StockPurchase extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ photoId: this.props.photoId });
-    const comment = Object.assign({}, this.state);
-    this.props.addComment(comment).then(() => {
+    this.props.searchSymbol(this.state.symbol).then(() => {
       this.setState({
         symbol: ""
       });
@@ -48,4 +47,13 @@ class StockPurchase extends Component {
   }
 }
 
-export default StockPurchase;
+const mapDispatchToProps = dispatch => {
+  return {
+    searchSymbol: symbol => dispatch(searchSymbol(symbol))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(StockPurchase);

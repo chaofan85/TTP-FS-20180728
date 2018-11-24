@@ -17,3 +17,7 @@
   border-left: 2px solid green;
   height: 200px;
 }
+
+.overPriced {
+  color: red;
+}

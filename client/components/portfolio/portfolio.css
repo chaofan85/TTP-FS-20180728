@@ -21,3 +21,30 @@
 .overPriced {
   color: red;
 }
+
+.confirmation {
+  background: transparent;
+}
+
+.modal {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+}
+
+.confirm-box {
+  width: 500px;
+  height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  background: white;
+  border: 1px solid black;
+}

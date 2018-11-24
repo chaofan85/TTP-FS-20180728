@@ -12,6 +12,7 @@ class StockPurchase extends Component {
       symbol: "",
       stock: null,
       quantity: "",
+      totalPrice: 0,
       modalSwitch: false,
       overPriced: false,
       showError: false
@@ -24,10 +25,8 @@ class StockPurchase extends Component {
     this.changeModal = this.changeModal.bind(this);
   }
 
-  handleChange() {
-    return e => {
-      this.setState({ symbol: e.target.value });
-    };
+  handleChange(e) {
+    this.setState({ symbol: e.target.value });
   }
 
   getStockInfo(e) {
@@ -38,43 +37,53 @@ class StockPurchase extends Component {
       url: `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
     })
       .then(({ data }) => {
+        // console.log(data);
         this.setState({
           stock: data,
-          symbol: ""
+          symbol: "",
+          quantity: "",
+          modalSwitch: false,
+          overPriced: false,
+          showError: false
         });
       })
       .catch();
   }
 
-  changeModal() {
+  changeModal(e) {
+    e.preventDefault();
     if (!this.state.overPriced) {
-      this.setState({ changeModal: true });
+      this.setState({ modalSwitch: !this.state.modalSwitch }, () => {
+        // console.log(this.);
+        document.body.style.overflow = this.state.changeModal
+          ? "hidden"
+          : "visible";
+      });
     } else {
       this.setState({ showError: true });
     }
-    // this.setState({ modalSwitch: !this.state.modalSwitch });
   }
 
   purchaseStock() {
     // this.setState({ showForm: !this.state.showForm });
   }
 
-  changeQuantity() {
-    return e => {
-      this.setState({ quantity: e.target.value }, () => {
-        if (
-          Number(
-            (
-              this.state.stock["iexRealtimePrice"] * this.state.quantity
-            ).toFixed(2)
-          ) > this.props.currentUser.balance
-        ) {
+  changeQuantity(e) {
+    this.setState(
+      {
+        quantity: e.target.value,
+        totalPrice: Number(
+          (this.state.stock["latestPrice"] * e.target.value).toFixed(2)
+        )
+      },
+      () => {
+        if (this.state.totalPrice > this.props.currentUser.balance) {
           this.setState({ overPriced: true });
         } else {
-          this.setState({ overPriced: false });
+          this.setState({ overPriced: false, showError: false });
         }
-      });
-    };
+      }
+    );
   }
 
   render() {
@@ -93,13 +102,13 @@ class StockPurchase extends Component {
               type="text"
               placeholder="Enter the Ticker Symbol"
               value={this.state.symbol}
-              onChange={handleChange}
+              onChange={this.handleChange}
             />
           </form>
           {this.state.stock ? (
             <div className="search-result">
               <div>{this.state.stock["companyName"]} </div>
-              <div>${this.state.stock["iexRealtimePrice"]}</div>
+              <div>${this.state.stock["latestPrice"]}</div>
               <div>
                 Quantity:
                 <br />
@@ -108,18 +117,33 @@ class StockPurchase extends Component {
                   min="1"
                   step="1"
                   value={this.state.quantity}
-                  onChange={this.changeQuantity()}
+                  onChange={this.changeQuantity}
                 />
                 <div>
                   Total Price:
                   <span className={this.state.overPriced ? "overPriced" : ""}>
                     ${(
-                      this.state.stock["iexRealtimePrice"] * this.state.quantity
+                      this.state.stock["latestPrice"] * this.state.quantity
                     ).toFixed(2)}
                   </span>
                 </div>
+                {this.state.showError ? (
+                  <div>You can't buy this amount of stocks</div>
+                ) : null}
                 <button onClick={this.changeModal}>Purchase</button>
               </div>
+            </div>
+          ) : null}
+          {this.state.modalSwitch ? (
+            <div className="confirmation">
+              <div className="confirm-box">
+                <div>Do you want to continue this transaction?</div>
+                <div className="confirm-buttons">
+                  <button onClick={this.purchaseStock}>Yes</button>
+                  <button onClick={this.changeModal}>No</button>
+                </div>
+              </div>
+              <div className="modal" />
             </div>
           ) : null}
         </div>

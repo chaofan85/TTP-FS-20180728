@@ -10,11 +10,13 @@ class StockList extends Component {
   }
 
   render() {
+    console.log(this.props.stocks);
     return <div className="stock-list">lalala</div>;
   }
 }
 
 const mapStateToProps = state => {
+  // console.log(state);
   return {
     currentUser: state.session.currentUser,
     stocks: state.stocks

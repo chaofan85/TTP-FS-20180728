@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateBalance } from "../../actions/stockActions";
+import {
+  updateBalance,
+  createStock,
+  updateStock
+} from "../../actions/stockActions";
 import axios from "axios";
 import "./portfolio.css";
 
@@ -23,6 +27,8 @@ class StockPurchase extends Component {
     this.purchaseStock = this.purchaseStock.bind(this);
     this.changeQuantity = this.changeQuantity.bind(this);
     this.changeModal = this.changeModal.bind(this);
+    this.createNewStock = this.createNewStock.bind(this);
+    this.updateOldStock = this.updateOldStock.bind(this);
   }
 
   handleChange(e) {
@@ -68,7 +74,7 @@ class StockPurchase extends Component {
       (this.props.currentUser.balance - this.state.totalPrice).toFixed(2)
     );
     this.props.updateBalance(id, newBalance).then(() => {
-      console.log(this.state);
+      this.createNewStock();
       document.body.style.overflow = "visible";
       this.setState({
         modalSwitch: false,
@@ -80,11 +86,22 @@ class StockPurchase extends Component {
 
   createNewStock() {
     let stockData = {};
-    // symbol, :company_name, :total_quantity, :purchase_price, :total_investment
     stockData.symbol = this.state.stock.symbol;
     stockData.company_name = this.state.stock.companyName;
     stockData.total_quantity = Number(this.state.quantity);
-    stockData.purchase_price = this.state.totalPrice;
+    stockData.total_investment = this.state.totalPrice;
+
+    this.props.createStock(stockData);
+  }
+
+  updateOldStock() {
+    let stockData = {};
+    stockData.symbol = this.state.stock.symbol;
+    stockData.company_name = this.state.stock.companyName;
+    stockData.total_quantity = Number(this.state.quantity);
+    stockData.total_investment = this.state.totalPrice;
+
+    // this.props.updateStock(stockData);
   }
 
   changeQuantity(e) {
@@ -179,7 +196,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateBalance: (id, balance) => dispatch(updateBalance(id, balance))
+    updateBalance: (id, balance) => dispatch(updateBalance(id, balance)),
+    createStock: data => dispatch(createStock(data)),
+    updateStock: data => dispatch(updateStock(data))
   };
 };
 

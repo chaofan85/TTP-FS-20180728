@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20181125022012) do
     t.string "symbol", null: false
     t.string "company_name", null: false
     t.integer "total_quantity", null: false
-    t.decimal "total_investment", null: false
+    t.decimal "total_investment", precision: 11, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_stocks_on_user_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20181125022012) do
     t.integer "user_id", null: false
     t.integer "stock_id", null: false
     t.integer "quantity", null: false
-    t.decimal "purchase_price", null: false
-    t.decimal "total_price", null: false
+    t.decimal "purchase_price", precision: 11, scale: 2, null: false
+    t.decimal "total_price", precision: 11, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_transactions_on_user_id"

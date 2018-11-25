@@ -26,7 +26,7 @@ class Api::StocksController < ApplicationController
   private
 
   def stock_params
-    params.require(:stock).permit(:symbol, :company_name, :total_quantity, :purchase_price, :total_investment)
+    params.require(:stock).permit(:symbol, :company_name, :total_quantity, :total_investment)
   end
 
 end

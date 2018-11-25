@@ -1,8 +1,16 @@
-import { combineReducers } from "redux";
-import StockLookupReducer from "./stockLookupReducer";
+import { RECEIVE_STOCKS } from "../actions/stockActions";
+import merge from "lodash/merge";
 
-const StockReducer = combineReducers({
-  stockInfo: StockLookupReducer
-});
+const initialState = {};
+const stockReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case RECEIVE_STOCKS:
+      let newState = merge({}, state, { currentUser: action.stocks });
+      return newState;
 
-export default StockReducer;
+    default:
+      return state;
+  }
+};
+
+export default stockReducer;

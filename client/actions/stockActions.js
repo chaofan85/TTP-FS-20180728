@@ -11,10 +11,10 @@ const updateCurrenUser = user => {
   };
 };
 
-const receiveStocks = stocks => {
+const receiveStocks = data => {
   return {
     type: RECEIVE_STOCKS,
-    stocks
+    stocks: data.stocks
   };
 };
 

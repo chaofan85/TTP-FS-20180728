@@ -4,8 +4,8 @@ class CreateTransactions < ActiveRecord::Migration[5.1]
       t.integer :user_id, null: false
       t.integer :stock_id, null: false
       t.integer :quantity, null: false
-      t.decimal :purchase_price, :precision => 11, :scale => 2, null: false
-      t.decimal :total_price, :precision => 11, :scale => 2, null: false
+      t.string :purchase_price, null: false
+      t.string :total_price, null: false
 
       t.timestamps
     end

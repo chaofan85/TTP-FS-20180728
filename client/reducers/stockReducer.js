@@ -5,7 +5,7 @@ const initialState = {};
 const stockReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_STOCKS:
-      let newState = merge({}, state, { currentUser: action.stocks });
+      let newState = merge({}, state, action.stocks);
       return newState;
 
     default:

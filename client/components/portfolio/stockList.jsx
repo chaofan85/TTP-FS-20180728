@@ -16,7 +16,7 @@ class StockList extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
+  console.log(state);
   return {
     currentUser: state.session.currentUser,
     stocks: state.stocks

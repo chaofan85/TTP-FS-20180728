@@ -5,7 +5,7 @@ class CreateStocks < ActiveRecord::Migration[5.1]
       t.string :symbol, null: false
       t.string :company_name, null: false
       t.integer :total_quantity, null: false
-      t.decimal :total_investment, :precision => 11, :scale => 2, null: false
+      t.string :total_investment, null: false
 
       t.timestamps
     end

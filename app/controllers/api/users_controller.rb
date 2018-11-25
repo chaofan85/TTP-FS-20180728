@@ -16,6 +16,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    p @user
     if @user.update_attributes(balance_params)
       render :show
     else

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import searchSymbol from "../../actions/stockActions";
+import { searchSymbol, updateBalance } from "../../actions/stockActions";
 import axios from "axios";
 import "./portfolio.css";
 
@@ -65,7 +65,19 @@ class StockPurchase extends Component {
   }
 
   purchaseStock() {
-    // this.setState({ showForm: !this.state.showForm });
+    let id = this.props.currentUser.id;
+    let newBalance = Number(
+      (this.props.currentUser.balance - this.state.totalPrice).toFixed(2)
+    );
+    // console.log(id, newBalance);
+    this.props.updateBalance(id, newBalance).then(() => {
+      document.body.style.overflow = "visible";
+      this.setState({
+        modalSwitch: false,
+        quantity: "",
+        totalPrice: 0
+      });
+    });
   }
 
   changeQuantity(e) {
@@ -160,7 +172,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchSymbol: symbol => dispatch(searchSymbol(symbol))
+    searchSymbol: symbol => dispatch(searchSymbol(symbol)),
+    updateBalance: (id, balance) => dispatch(updateBalance(id, balance))
   };
 };
 

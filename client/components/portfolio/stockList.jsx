@@ -4,12 +4,22 @@ import { getStocks } from "../../actions/stockActions";
 import "./portfolio.css";
 
 class StockList extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    let id = this.props.currentUser.id;
+    this.props.getStocks(id);
+  }
 
   render() {
     return <div className="stock-list">lalala</div>;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.session.currentUser,
+    stocks: state.stocks
+  };
+};
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -18,6 +28,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(StockList);

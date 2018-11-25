@@ -12,3 +12,11 @@ export const getStocks = id => {
     url: `/api/users/${id}`
   });
 };
+
+export const createStock = data => {
+  return $.ajax({
+    method: "POST",
+    url: "/api/stocks",
+    data: { stock: data }
+  });
+};

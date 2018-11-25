@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { searchSymbol, updateBalance } from "../../actions/stockActions";
+import { updateBalance } from "../../actions/stockActions";
 import axios from "axios";
 import "./portfolio.css";
 
@@ -37,7 +37,6 @@ class StockPurchase extends Component {
       url: `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
     })
       .then(({ data }) => {
-        // console.log(data);
         this.setState({
           stock: data,
           symbol: "",
@@ -54,7 +53,6 @@ class StockPurchase extends Component {
     e.preventDefault();
     if (!this.state.overPriced) {
       this.setState({ modalSwitch: !this.state.modalSwitch }, () => {
-        // console.log(this.);
         document.body.style.overflow = this.state.changeModal
           ? "hidden"
           : "visible";
@@ -69,8 +67,8 @@ class StockPurchase extends Component {
     let newBalance = Number(
       (this.props.currentUser.balance - this.state.totalPrice).toFixed(2)
     );
-    // console.log(id, newBalance);
     this.props.updateBalance(id, newBalance).then(() => {
+      console.log(this.state);
       document.body.style.overflow = "visible";
       this.setState({
         modalSwitch: false,
@@ -78,6 +76,15 @@ class StockPurchase extends Component {
         totalPrice: 0
       });
     });
+  }
+
+  createNewStock() {
+    let stockData = {};
+    // symbol, :company_name, :total_quantity, :purchase_price, :total_investment
+    stockData.symbol = this.state.stock.symbol;
+    stockData.company_name = this.state.stock.companyName;
+    stockData.total_quantity = Number(this.state.quantity);
+    stockData.purchase_price = this.state.totalPrice;
   }
 
   changeQuantity(e) {
@@ -172,7 +179,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchSymbol: symbol => dispatch(searchSymbol(symbol)),
     updateBalance: (id, balance) => dispatch(updateBalance(id, balance))
   };
 };

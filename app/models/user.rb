@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many :stocks, class_name: 'Stock'
+
+  has_many :transactions, class_name: 'Transaction'
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     return nil unless user && user.valid_password?(password)

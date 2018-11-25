@@ -10,13 +10,12 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(email: params[:email])
+    @user = User.find(params[:id])
     render 'api/users/show.json.jbuilder'
   end
 
   def update
     @user = User.find(params[:id])
-    p @user
     if @user.update_attributes(balance_params)
       render :show
     else

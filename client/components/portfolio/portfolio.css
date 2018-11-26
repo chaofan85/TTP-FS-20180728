@@ -7,9 +7,13 @@
   margin-top: 100px;
 }
 
-.stock-list,
+.stock-list {
+  width: 65%;
+  border: 1px solid black;
+}
+
 .stock-purchase {
-  width: 45%;
+  width: 30%;
   border: 1px solid black;
 }
 
@@ -47,4 +51,26 @@
   z-index: 11;
   background: white;
   border: 1px solid black;
+}
+
+table {
+  border: 1px solid black;
+  margin-left: 5px;
+  text-align: center;
+}
+
+.list-symbol {
+  width: 15%;
+}
+
+.list-company {
+  width: 25%;
+}
+
+.list-quantity {
+  width: 10%;
+}
+
+.list-investment {
+  width: 20%;
 }

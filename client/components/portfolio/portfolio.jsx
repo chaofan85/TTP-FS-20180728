@@ -19,10 +19,7 @@ class Portfolio extends Component {
           currentUser={this.props.currentUser}
         />
         <div className="vertical-line" />
-        <StockPurchase
-          stocks={this.props.stocks}
-          currentUser={this.props.currentUser}
-        />
+        <StockPurchase currentUser={this.props.currentUser} />
       </main>
     );
   }

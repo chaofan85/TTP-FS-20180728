@@ -1,36 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import StockItem from "./stockItem";
 import { getStocks } from "../../actions/stockActions";
 import "./portfolio.css";
 
 class StockList extends Component {
-  // componentDidMount() {
-  //   let id = this.props.currentUser.id;
-  //   this.props.getStocks(id);
-  // }
-
   render() {
-    // console.log(this.props.stocks);
-    return <div className="stock-list">lalala</div>;
+    let records = Object.values(this.props.stocks).map(stock => {
+      return (
+        <StockItem
+          symbol={stock.symbol}
+          companyName={stock.company_name}
+          quantity={stock.total_quantity}
+          totalInvestment={stock.total_investment}
+          key={stock.id}
+        />
+      );
+    });
+    return (
+      <div className="stock-list">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Company Name</th>
+              <th>Total Quantity</th>
+              <th>Total Investment</th>
+            </tr>
+          </thead>
+          <tbody>{records}</tbody>
+        </table>
+      </div>
+    );
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     currentUser: state.session.currentUser,
-//     stocks: state.stocks
-//   };
-// };
-//
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     getStocks: id => dispatch(getStocks(id))
-//   };
-// };
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(StockList);
 
 export default StockList;

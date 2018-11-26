@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20181125022012) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "stock_id", null: false
+    t.string "symbol", null: false
     t.integer "quantity", null: false
     t.string "purchase_price", null: false
     t.string "total_price", null: false

@@ -19,7 +19,6 @@ class StockPurchase extends Component {
       stock: null,
       quantity: "",
       totalPrice: 0,
-      stockId: "",
       modalSwitch: false,
       overPriced: false,
       showError: false
@@ -112,23 +111,20 @@ class StockPurchase extends Component {
     let oldData = this.props.stocks[this.state.stock.symbol];
     let stockData = merge({}, oldData);
     let stockId = oldData.id;
-    // console.log(oldData, stockData, this.state.quantity, this.state.totalPrice);
     stockData.total_quantity += Number(this.state.quantity);
-    stockData.total_investment =
-      this.state.totalPrice + Number(stockData.total_investment);
+    stockData.total_investment = (
+      this.state.totalPrice + Number(stockData.total_investment)
+    ).toFixed(2);
     delete stockData.id;
-    // console.log(stockData);
     this.props.updateStock(stockId, stockData);
   }
 
   addRecord() {
     let transactionData = {};
-    console.log(this.props.stocks);
-    transactionData.stock_id = this.props.stocks[this.state.stock.symbol].id;
+    transactionData.symbol = this.state.stock.symbol;
     transactionData.quantity = Number(this.state.quantity);
     transactionData.purchase_price = this.state.stock.latestPrice;
     transactionData.total_price = this.state.totalPrice;
-    console.log(transactionData);
 
     this.props.createTransaction(transactionData);
   }
@@ -216,13 +212,12 @@ class StockPurchase extends Component {
     );
   }
 }
-//
-// const mapStateToProps = state => {
-//   return {
-//     currentUser: state.session.currentUser,
-//     stocks: state.stocks
-//   };
-// };
+
+const mapStateToProps = state => {
+  return {
+    stocks: state.stocks
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -234,6 +229,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(StockPurchase);

@@ -19,6 +19,7 @@ class StockPurchase extends Component {
       stock: null,
       quantity: "",
       totalPrice: 0,
+      stockId: "",
       modalSwitch: false,
       overPriced: false,
       showError: false
@@ -76,20 +77,25 @@ class StockPurchase extends Component {
     let newBalance = Number(
       (this.props.currentUser.balance - this.state.totalPrice).toFixed(2)
     );
-    this.props.updateBalance(id, newBalance).then(() => {
-      if (!this.props.stocks[this.state.stock.symbol]) {
-        this.createNewStock().then(() => this.addRecord());
-      } else {
-        this.updateOldStock().then(() => this.addRecord());
-      }
+    this.props
+      .updateBalance(id, newBalance)
+      .then(() => {
+        if (!this.props.stocks[this.state.stock.symbol]) {
+          this.createNewStock();
+        } else {
+          this.updateOldStock();
+        }
 
-      document.body.style.overflow = "visible";
-      this.setState({
-        modalSwitch: false,
-        quantity: "",
-        totalPrice: 0
+        document.body.style.overflow = "visible";
+      })
+      .then(() => {
+        this.addRecord();
+        this.setState({
+          modalSwitch: false,
+          quantity: "",
+          totalPrice: 0
+        });
       });
-    });
   }
 
   createNewStock() {
@@ -105,22 +111,30 @@ class StockPurchase extends Component {
   updateOldStock() {
     let oldData = this.props.stocks[this.state.stock.symbol];
     let stockData = merge({}, oldData);
-    console.log(oldData, stockData, this.state.quantity, this.state.totalPrice);
+    let stockId = oldData.id;
+    // console.log(oldData, stockData, this.state.quantity, this.state.totalPrice);
     stockData.total_quantity += Number(this.state.quantity);
     stockData.total_investment =
       this.state.totalPrice + Number(stockData.total_investment);
-
-    this.props.updateStock(this.props.currentUser.id, stockData);
+    delete stockData.id;
+    // console.log(stockData);
+    this.props.updateStock(stockId, stockData);
   }
 
   addRecord() {
     let transactionData = {};
-    transactionData.stock_id = this.state.stock.id;
+    console.log(this.props.stocks);
+    transactionData.stock_id = this.props.stocks[this.state.stock.symbol].id;
     transactionData.quantity = Number(this.state.quantity);
     transactionData.purchase_price = this.state.stock.latestPrice;
-    transactionData.totalPrice = this.state.totalPrice;
+    transactionData.total_price = this.state.totalPrice;
+    console.log(transactionData);
 
     this.props.createTransaction(transactionData);
+  }
+
+  getStockId() {
+    this.setState({ stockId: this.props.stocks[this.state.stock.symbol].id });
   }
 
   changeQuantity(e) {
@@ -142,10 +156,6 @@ class StockPurchase extends Component {
   }
 
   render() {
-    const handleClick = e => {
-      this.setState({ symbol: e.target.value });
-    };
-
     return (
       <div className="stock-purchase">
         <div className="balance">

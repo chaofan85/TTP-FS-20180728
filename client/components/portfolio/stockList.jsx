@@ -10,7 +10,7 @@ class StockList extends Component {
   // }
 
   render() {
-    console.log(this.props.stocks);
+    // console.log(this.props.stocks);
     return <div className="stock-list">lalala</div>;
   }
 }

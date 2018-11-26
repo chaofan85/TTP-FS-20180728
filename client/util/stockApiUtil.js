@@ -20,3 +20,11 @@ export const createStock = data => {
     data: { stock: data }
   });
 };
+
+export const updateStock = (id, data) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `/api/stocks/${id}`,
+    data: { stock: data }
+  });
+};

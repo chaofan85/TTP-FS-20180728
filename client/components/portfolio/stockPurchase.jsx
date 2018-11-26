@@ -6,6 +6,7 @@ import {
   updateStock
 } from "../../actions/stockActions";
 import axios from "axios";
+import merge from "lodash/merge";
 import "./portfolio.css";
 
 class StockPurchase extends Component {
@@ -74,7 +75,12 @@ class StockPurchase extends Component {
       (this.props.currentUser.balance - this.state.totalPrice).toFixed(2)
     );
     this.props.updateBalance(id, newBalance).then(() => {
-      this.createNewStock();
+      if (!this.props.stocks[this.state.stock.symbol]) {
+        this.createNewStock();
+      } else {
+        this.updateOldStock();
+      }
+
       document.body.style.overflow = "visible";
       this.setState({
         modalSwitch: false,
@@ -95,13 +101,14 @@ class StockPurchase extends Component {
   }
 
   updateOldStock() {
-    let stockData = {};
-    stockData.symbol = this.state.stock.symbol;
-    stockData.company_name = this.state.stock.companyName;
-    stockData.total_quantity = Number(this.state.quantity);
-    stockData.total_investment = this.state.totalPrice;
+    let oldData = this.props.stocks[this.state.stock.symbol];
+    let stockData = merge({}, oldData);
+    console.log(oldData, stockData, this.state.quantity, this.state.totalPrice);
+    stockData.total_quantity += Number(this.state.quantity);
+    stockData.total_investment =
+      this.state.totalPrice + Number(stockData.total_investment);
 
-    // this.props.updateStock(stockData);
+    this.props.updateStock(this.props.currentUser.id, stockData);
   }
 
   changeQuantity(e) {
@@ -187,22 +194,23 @@ class StockPurchase extends Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    currentUser: state.session.currentUser
-  };
-};
+//
+// const mapStateToProps = state => {
+//   return {
+//     currentUser: state.session.currentUser,
+//     stocks: state.stocks
+//   };
+// };
 
 const mapDispatchToProps = dispatch => {
   return {
     updateBalance: (id, balance) => dispatch(updateBalance(id, balance)),
     createStock: data => dispatch(createStock(data)),
-    updateStock: data => dispatch(updateStock(data))
+    updateStock: (id, data) => dispatch(updateStock(id, data))
   };
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(StockPurchase);

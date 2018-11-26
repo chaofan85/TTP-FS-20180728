@@ -4,10 +4,10 @@ import { getStocks } from "../../actions/stockActions";
 import "./portfolio.css";
 
 class StockList extends Component {
-  componentDidMount() {
-    let id = this.props.currentUser.id;
-    this.props.getStocks(id);
-  }
+  // componentDidMount() {
+  //   let id = this.props.currentUser.id;
+  //   this.props.getStocks(id);
+  // }
 
   render() {
     console.log(this.props.stocks);
@@ -15,21 +15,22 @@ class StockList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    currentUser: state.session.currentUser,
-    stocks: state.stocks
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     currentUser: state.session.currentUser,
+//     stocks: state.stocks
+//   };
+// };
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getStocks: id => dispatch(getStocks(id))
+//   };
+// };
+//
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(StockList);
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getStocks: id => dispatch(getStocks(id))
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StockList);
+export default StockList;

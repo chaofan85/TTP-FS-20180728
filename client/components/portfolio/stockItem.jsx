@@ -11,6 +11,8 @@ class StockItem extends Component {
         <td className="list-company">{this.props.companyName}</td>
         <td className="list-quantity">{this.props.quantity}</td>
         <td className="list-investent">{this.props.totalInvestment}</td>
+        <td className="list-open">{this.props.openPrice}</td>
+        <td className="list-latest">{this.props.latestPrice}</td>
       </tr>
     );
   }

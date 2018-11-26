@@ -5,6 +5,7 @@ import {
   createStock,
   updateStock
 } from "../../actions/stockActions";
+import { createTransaction } from "../../actions/transactionActions";
 import axios from "axios";
 import merge from "lodash/merge";
 import "./portfolio.css";
@@ -30,6 +31,7 @@ class StockPurchase extends Component {
     this.changeModal = this.changeModal.bind(this);
     this.createNewStock = this.createNewStock.bind(this);
     this.updateOldStock = this.updateOldStock.bind(this);
+    this.addRecord = this.addRecord.bind(this);
   }
 
   handleChange(e) {
@@ -76,9 +78,9 @@ class StockPurchase extends Component {
     );
     this.props.updateBalance(id, newBalance).then(() => {
       if (!this.props.stocks[this.state.stock.symbol]) {
-        this.createNewStock();
+        this.createNewStock().then(() => this.addRecord());
       } else {
-        this.updateOldStock();
+        this.updateOldStock().then(() => this.addRecord());
       }
 
       document.body.style.overflow = "visible";
@@ -109,6 +111,16 @@ class StockPurchase extends Component {
       this.state.totalPrice + Number(stockData.total_investment);
 
     this.props.updateStock(this.props.currentUser.id, stockData);
+  }
+
+  addRecord() {
+    let transactionData = {};
+    transactionData.stock_id = this.state.stock.id;
+    transactionData.quantity = Number(this.state.quantity);
+    transactionData.purchase_price = this.state.stock.latestPrice;
+    transactionData.totalPrice = this.state.totalPrice;
+
+    this.props.createTransaction(transactionData);
   }
 
   changeQuantity(e) {
@@ -206,7 +218,8 @@ const mapDispatchToProps = dispatch => {
   return {
     updateBalance: (id, balance) => dispatch(updateBalance(id, balance)),
     createStock: data => dispatch(createStock(data)),
-    updateStock: (id, data) => dispatch(updateStock(id, data))
+    updateStock: (id, data) => dispatch(updateStock(id, data)),
+    createTransaction: data => dispatch(createTransaction(data))
   };
 };
 

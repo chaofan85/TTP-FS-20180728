@@ -11,3 +11,14 @@ json.stocks do
     end
   end
 end
+
+json.transactions do
+  user.transactions.each do |transaction|
+    json.set! transaction.symbol do
+      json.id transaction.id
+      json.quantity transaction.quantity
+      json.purchase_price transaction.purchase_price
+      json.total_price transaction.total_price
+    end
+  end
+end

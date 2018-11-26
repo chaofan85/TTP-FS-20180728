@@ -23,7 +23,6 @@ class Home extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log(state.session);
   return {
     currentUser: state.session.currentUser
   };

@@ -14,7 +14,6 @@ class UserHeader extends Component {
   }
 
   render() {
-    console.log(this.props);
     return this.props.currentUser ? (
       <div className="user-panel">
         <div className="welcome">

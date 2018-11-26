@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import StockList from "./stockList";
 import StockPurchase from "./stockPurchase";
+import UiSwitch from "../other/uiSwitch";
 import { getStocks } from "../../actions/stockActions";
 import axios from "axios";
 import "./portfolio.css";
@@ -40,9 +41,9 @@ class Portfolio extends Component {
   }
 
   render() {
-    console.log(this.state.stockInfo);
     return (
       <main className="portfolio-area">
+        <UiSwitch />
         <StockList
           stocks={this.props.stocks}
           stockInfo={this.state.stockInfo}

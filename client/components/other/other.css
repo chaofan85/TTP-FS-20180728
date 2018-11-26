@@ -1,0 +1,10 @@
+.switch {
+  position: fixed;
+  right: 0;
+  top: 80px;
+}
+
+.switch button {
+  display: block;
+  margin-top: 0;
+}

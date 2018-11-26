@@ -22,8 +22,17 @@
   height: 200px;
 }
 
-.overPriced {
+.overPriced,
+.red {
   color: red;
+}
+
+.green {
+  color: green;
+}
+
+.gray {
+  color: grey;
 }
 
 .confirmation {

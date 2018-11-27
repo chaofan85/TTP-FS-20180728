@@ -3,7 +3,6 @@ import * as StockAPIUtil from "../util/stockApiUtil.js";
 export const UPDATE_CURRENT_USER = "UPDATE_CURRENT_USER";
 export const RECEIVE_STOCKS = "RECEIVE_STOCKS";
 export const RECEIVE_STOCK = "RECEIVE_STOCK";
-export const UPDATE_STOCKS = "UPDATE_STOCKS";
 
 const updateCurrenUser = user => {
   return {
@@ -19,16 +18,9 @@ const receiveStocks = data => {
   };
 };
 
-const receiveStock = stocks => {
+const receiveStock = stock => {
   return {
     type: RECEIVE_STOCK,
-    stocks
-  };
-};
-
-const updateStocks = stock => {
-  return {
-    type: UPDATE_STOCKS,
     stock
   };
 };
@@ -45,12 +37,12 @@ export const getStocks = id => dispatch => {
 
 export const createStock = data => dispatch => {
   return StockAPIUtil.createStock(data).then(payload =>
-    dispatch(updateStocks(payload))
+    dispatch(receiveStock(payload))
   );
 };
 
 export const updateStock = (id, data) => dispatch => {
   return StockAPIUtil.updateStock(id, data).then(payload =>
-    dispatch(updateStocks(payload))
+    dispatch(receiveStock(payload))
   );
 };

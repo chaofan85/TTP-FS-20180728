@@ -6,6 +6,7 @@ import "./portfolio.css";
 
 class StockList extends Component {
   render() {
+    console.log(this.props.currentUser);
     let open, latest, currentValue, color;
     let records = Object.values(this.props.stocks).map(stock => {
       if (this.props.stockInfo && this.props.stockInfo[stock.symbol]) {
@@ -13,6 +14,7 @@ class StockList extends Component {
         open = data.open;
         latest = data.latestPrice;
         currentValue = (stock.total_quantity * latest).toFixed(2);
+
         if (latest > open) {
           color = "green";
         } else if (latest === open) {

@@ -1,4 +1,4 @@
-import { RECEIVE_STOCKS, UPDATE_STOCKS } from "../actions/stockActions";
+import { RECEIVE_STOCKS, RECEIVE_STOCK } from "../actions/stockActions";
 import merge from "lodash/merge";
 
 const initialState = {};
@@ -9,7 +9,7 @@ const stockReducer = (state = initialState, action) => {
       newState = merge({}, state, action.stocks);
       return newState;
 
-    case UPDATE_STOCKS:
+    case RECEIVE_STOCK:
       let newStock = action.stock;
       newState = merge({}, state);
       newState[newStock.symbol] = newStock;

@@ -14,3 +14,7 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+button:hover {
+  background: #26c7fb;
+}

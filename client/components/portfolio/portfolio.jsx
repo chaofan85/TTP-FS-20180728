@@ -17,10 +17,17 @@ class Portfolio extends Component {
 
   componentDidMount() {
     let id = this.props.currentUser.id;
-    let self = this;
     this.props.getStocks(id).then(() => {
       this.getStockInfo();
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser !== this.props.currentUser) {
+      this.props.getStocks(this.props.currentUser.id).then(() => {
+        this.getStockInfo();
+      });
+    }
   }
 
   getStockInfo() {

@@ -1,24 +1,26 @@
-# README
+# Stocker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Technology
 
-Things you may want to cover:
+- Back-End: Ruby on Rails, PostgreSQL
 
-* Ruby version
+- Front-End: HTML, CSS, ReactJS/Redux, jQuery
 
-* System dependencies
+- Other Libraries and Tools
+  - BCrypt
+  - Jbuilder
+  - react-router
+  - lodash
+  - Webpack
 
-* Configuration
+## Live Demo
 
-* Database creation
+## Run Locally
 
-* Database initialization
+- `git clone git@github.com:chaofan85/TTP-FS-20180728.git`
 
-* How to run the test suite
+- `bundle install` (require Ruby)
 
-* Services (job queues, cache servers, search engines, etc.)
+- `npm install`
 
-* Deployment instructions
-
-* ...
+- `npm start`

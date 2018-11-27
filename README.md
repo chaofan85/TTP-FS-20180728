@@ -15,6 +15,8 @@
 
 ## Live Demo
 
+https://ttp-stocker.herokuapp.com
+
 ## Run Locally
 
 - `git clone git@github.com:chaofan85/TTP-FS-20180728.git`

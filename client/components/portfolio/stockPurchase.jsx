@@ -21,7 +21,8 @@ class StockPurchase extends Component {
       totalPrice: 0,
       modalSwitch: false,
       overPriced: false,
-      showError: false
+      showError: false,
+      notFound: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,10 +53,13 @@ class StockPurchase extends Component {
           quantity: "",
           modalSwitch: false,
           overPriced: false,
-          showError: false
+          showError: false,
+          notFound: false
         });
       })
-      .catch();
+      .catch(() => {
+        this.setState({ notFound: true });
+      });
   }
 
   changeModal(e) {
@@ -169,6 +173,9 @@ class StockPurchase extends Component {
               onChange={this.handleChange}
             />
           </form>
+          {this.state.notFound ? (
+            <div>Sorry, cannot find the stock with this symbol.</div>
+          ) : null}
           {this.state.stock ? (
             <div className="search-result">
               <div>{this.state.stock["companyName"]} </div>

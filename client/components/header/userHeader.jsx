@@ -19,7 +19,9 @@ class UserHeader extends Component {
         <div className="welcome">
           Welcome, {this.props.currentUser.username}!
         </div>
-        <button onClick={this.userLogout}>Log Out</button>
+        <button className="log-out" onClick={this.userLogout}>
+          Log Out
+        </button>
       </div>
     ) : null;
   }

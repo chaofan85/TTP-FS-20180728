@@ -6,7 +6,6 @@ import "./portfolio.css";
 
 class StockList extends Component {
   render() {
-    console.log(this.props.currentUser);
     let open, latest, currentValue, color;
     let records = Object.values(this.props.stocks).map(stock => {
       if (this.props.stockInfo && this.props.stockInfo[stock.symbol]) {

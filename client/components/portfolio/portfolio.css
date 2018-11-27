@@ -126,6 +126,12 @@ a {
   font-size: 20px;
 }
 
+.ticker-search {
+  margin-top: 20px;
+  width: 200px;
+  height: 30px;
+}
+
 .search-result {
   margin-top: 15px;
   background: #474747;

@@ -32,8 +32,7 @@ const SessionReducer = (state = initialState, action) => {
       let newRecord = { [action.data.id]: action.data };
       newState = merge({}, state);
       merge(newState.currentUser.transactions, newRecord);
-      // console.log("newRecord", newRecord);
-      // console.log(newState, "lalala");
+
       return newState;
 
     default:

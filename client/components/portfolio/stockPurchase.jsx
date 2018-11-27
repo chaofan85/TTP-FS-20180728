@@ -148,7 +148,10 @@ class StockPurchase extends Component {
           )
         },
         () => {
-          if (this.state.totalPrice > this.props.currentUser.balance) {
+          if (
+            this.state.totalPrice > this.props.currentUser.balance ||
+            this.state.totalPrice === 0
+          ) {
             this.setState({ overPriced: true });
           } else {
             this.setState({ overPriced: false, showError: false });
@@ -167,6 +170,7 @@ class StockPurchase extends Component {
         <div className="symbol-search">
           <form onSubmit={this.getStockInfo}>
             <input
+              className="ticker-search"
               type="text"
               placeholder="Enter the Ticker Symbol"
               value={this.state.symbol}

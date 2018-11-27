@@ -23,16 +23,17 @@ header {
 }
 
 .user-panel {
-  width: 250px;
+  width: 350px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: "Lato", sans-serif;
 }
 
 .welcome {
-  width: 150px;
-  padding-top: 15px;
-  font-size: 18px;
+  width: 250px;
+  padding-top: 18px;
+  font-size: 16px;
+  text-align: right;
 }
 
 button {
@@ -41,4 +42,8 @@ button {
   margin-top: 10px;
   font-size: 15px;
   cursor: pointer;
+}
+
+.log-out {
+  border-radius: 3px;
 }

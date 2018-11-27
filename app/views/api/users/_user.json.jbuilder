@@ -16,6 +16,7 @@ json.transactions do
   user.transactions.each do |transaction|
     json.set! transaction.id do
       json.id transaction.id
+      json.created_at transaction.created_at
       json.symbol transaction.symbol
       json.quantity transaction.quantity
       json.purchase_price transaction.purchase_price

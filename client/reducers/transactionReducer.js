@@ -6,8 +6,12 @@ const transactionReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_RECORD:
-      newState = merge({}, state, action.data);
+      let newRecord = { [action.data.id]: action.data };
+      newState = merge(state, newRecord);
       return newState;
+
+    case RECEIVE_RECORDS:
+      return action.transactions;
 
     default:
       return state;

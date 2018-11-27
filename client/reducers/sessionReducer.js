@@ -24,7 +24,12 @@ const SessionReducer = (state = initialState, action) => {
     case RECEIVE_STOCK:
       let newStock = action.stock;
       newState = merge({}, state);
-      newState.currentUser.stocks[newStock.symbol] = newStock;
+      if (newState.currentUser.stock) {
+        newState.currentUser.stocks[newStock.symbol] = newStock;
+      } else {
+        newState.currentUser.stocks = {};
+        newState.currentUser.stocks[newStock.symbol] = newStock;
+      }
 
       return newState;
 

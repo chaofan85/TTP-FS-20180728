@@ -134,21 +134,24 @@ class StockPurchase extends Component {
   }
 
   changeQuantity(e) {
-    this.setState(
-      {
-        quantity: e.target.value,
-        totalPrice: Number(
-          (this.state.stock["latestPrice"] * e.target.value).toFixed(2)
-        )
-      },
-      () => {
-        if (this.state.totalPrice > this.props.currentUser.balance) {
-          this.setState({ overPriced: true });
-        } else {
-          this.setState({ overPriced: false, showError: false });
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState(
+        {
+          quantity: e.target.value,
+          totalPrice: Number(
+            (this.state.stock["latestPrice"] * e.target.value).toFixed(2)
+          )
+        },
+        () => {
+          if (this.state.totalPrice > this.props.currentUser.balance) {
+            this.setState({ overPriced: true });
+          } else {
+            this.setState({ overPriced: false, showError: false });
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   render() {

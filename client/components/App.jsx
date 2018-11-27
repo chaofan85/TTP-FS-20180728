@@ -9,7 +9,7 @@ const App = () => (
   <div className="app">
     <Header />
     <Switch>
-      <Route path="/history" component={TransactionHistory} />
+      <ProtectedRoute path="/history" component={TransactionHistory} />
       <Route exact path="/" component={Home} />
     </Switch>
   </div>

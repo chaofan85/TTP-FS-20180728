@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
     this.state = props.userInfo;
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.guestLogin = this.guestLogin.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -22,14 +22,6 @@ class LoginForm extends React.Component {
     return e => {
       this.setState({ [field]: e.target.value });
     };
-  }
-
-  guestLogin() {
-    const guest = {
-      email: "guest@stocker.com",
-      password: "iamguest"
-    };
-    this.props.login(guest);
   }
 
   componentWillUnmount() {

@@ -7,7 +7,6 @@ import "./transaction.css";
 
 class TransactionHistory extends Component {
   componentDidMount() {
-    // console.log(this.props);
     this.props.getTransactions(this.props.currentUser.id);
   }
 

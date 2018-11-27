@@ -1,7 +1,7 @@
 .switch {
   position: fixed;
-  right: 0;
-  top: 80px;
+  left: 0;
+  top: 70px;
 }
 
 .switch button {

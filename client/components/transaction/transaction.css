@@ -1,3 +1,18 @@
 .history-main {
+  width: 70%;
+  margin: auto;
   margin-top: 100px;
+  font-family: "Lato", sans-serif;
+}
+
+table {
+  margin: auto;
+  text-align: center;
+  width: 95%;
+  font-size: 0.9em;
+  font-family: ;
+}
+
+td {
+  height: 40px;
 }

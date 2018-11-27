@@ -28,6 +28,7 @@ class TransactionHistory extends Component {
       <div className="history-main">
         <UiSwitch />
         <div className="record-list">
+          <h3>Purchase History</h3>
           <table>
             <thead>
               <tr>

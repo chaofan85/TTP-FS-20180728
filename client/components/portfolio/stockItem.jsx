@@ -10,12 +10,13 @@ class StockItem extends Component {
           {this.props.symbol}
         </td>
         <td className="list-company">{this.props.companyName}</td>
-        <td className="list-quantity">{this.props.quantity}</td>
-        <td className="list-investent">{this.props.totalInvestment}</td>
         <td className={`list-latest ${this.props.color}`}>
-          {this.props.latestPrice}
+          ${this.props.latestPrice}
         </td>
-        <td className="list-current">{this.props.currentValue}</td>
+        <td className="list-quantity">{this.props.quantity}</td>
+        <td className="list-investent">${this.props.totalInvestment}</td>
+
+        <td className="list-current">${this.props.currentValue}</td>
       </tr>
     );
   }

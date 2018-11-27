@@ -37,14 +37,15 @@ class StockList extends Component {
     });
     return (
       <div className="stock-list">
-        <table>
+        <h3>My Portfolio</h3>
+        <table className="stock-table">
           <thead>
             <tr>
               <th>Symbol</th>
               <th>Company Name</th>
+              <th>Latest Price</th>
               <th>Total Quantity</th>
               <th>Total Investment</th>
-              <th>Latest Price</th>
               <th>Current Value</th>
             </tr>
           </thead>

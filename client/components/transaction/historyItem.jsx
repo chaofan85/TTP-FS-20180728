@@ -10,8 +10,8 @@ class HistoryItem extends Component {
         <td className="history-time">{this.props.purchaseTime}</td>
         <td className="history-symbol">{this.props.symbol}</td>
         <td className="history-quantity">{this.props.quantity}</td>
-        <td className="history-unit">{this.props.purchasePrice}</td>
-        <td className="history-total">{this.props.totalPrice}</td>
+        <td className="history-unit">${this.props.purchasePrice}</td>
+        <td className="history-total">${this.props.totalPrice}</td>
       </tr>
     );
   }

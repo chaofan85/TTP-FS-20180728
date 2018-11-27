@@ -1,25 +1,27 @@
+h3 {
+  text-align: center;
+}
+
 .portfolio-area {
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
-  justify-content: space-around;
-  border: 1px solid black;
+  justify-content: space-between;
   margin-top: 100px;
+  font-family: "Lato", sans-serif;
 }
 
 .stock-list {
   width: 65%;
-  border: 1px solid black;
 }
 
 .stock-purchase {
   width: 30%;
-  border: 1px solid black;
 }
 
 .vertical-line {
   border-left: 2px solid green;
-  height: 200px;
+  height: 90%;
 }
 
 .overPriced,
@@ -51,21 +53,36 @@
 }
 
 .confirm-box {
-  width: 500px;
-  height: 300px;
+  width: 400px;
+  height: 150px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 20px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 11;
   background: white;
-  border: 1px solid black;
+}
+
+.confirm-buttons {
+  margin-top: 5px;
+}
+
+.confirm-buttons button {
+  margin: 10px;
 }
 
 table {
-  border: 1px solid black;
-  margin-left: 5px;
+  margin: auto;
   text-align: center;
+  width: 95%;
+  font-size: 0.8em;
+}
+
+td {
+  height: 40px;
 }
 
 .list-symbol {
@@ -82,4 +99,58 @@ table {
 
 .list-investment {
   width: 20%;
+}
+
+input,
+input::-webkit-input-placeholder {
+  font-size: 12px;
+  box-sizing: border-box;
+  padding-left: 3px;
+}
+
+input {
+  margin-top: 5px;
+  width: 150px;
+  height: 25px;
+}
+
+.stock-purchase {
+  font-size: 0.9em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.balance {
+  font-size: 20px;
+}
+
+.search-result {
+  margin-top: 15px;
+  background: #474747;
+  font-family: Courier, monospace;
+  color: #00cf3b;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.purchase-section {
+  margin-top: 10px;
+}
+
+.quantity-input {
+  background: #474747;
+  border: none;
+  border-bottom: 1px solid #e8fb26;
+  color: #00cf3b;
+  margin-bottom: 10px;
+}
+.quantity-input::-webkit-input-placeholder {
+  color: #e8fb26;
+}
+
+.purchase-button {
+  width: auto;
 }

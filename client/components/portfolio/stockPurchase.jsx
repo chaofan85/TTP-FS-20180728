@@ -158,7 +158,7 @@ class StockPurchase extends Component {
     return (
       <div className="stock-purchase">
         <div className="balance">
-          balance: ${this.props.currentUser.balance}{" "}
+          Balance: ${this.props.currentUser.balance}{" "}
         </div>
         <div className="symbol-search">
           <form onSubmit={this.getStockInfo}>
@@ -172,36 +172,45 @@ class StockPurchase extends Component {
           {this.state.stock ? (
             <div className="search-result">
               <div>{this.state.stock["companyName"]} </div>
-              <div>${this.state.stock["latestPrice"]}</div>
-              <div>
-                Quantity:
-                <br />
-                <input
-                  type="number"
-                  min="1"
-                  step="1"
-                  value={this.state.quantity}
-                  onChange={this.changeQuantity}
-                />
+              <div>Lastest Price: ${this.state.stock["latestPrice"]}</div>
+              <div className="purchase-section">
                 <div>
-                  Total Price:
-                  <span className={this.state.overPriced ? "overPriced" : ""}>
-                    ${(
-                      this.state.stock["latestPrice"] * this.state.quantity
-                    ).toFixed(2)}
-                  </span>
+                  Quantity:
+                  <br />
+                  <input
+                    className="quantity-input"
+                    type="number"
+                    min="1"
+                    step="1"
+                    value={this.state.quantity}
+                    onChange={this.changeQuantity}
+                    placeholder="Enter the quantity"
+                  />
+                  <div>
+                    Total Price:
+                    <span className={this.state.overPriced ? "overPriced" : ""}>
+                      ${(
+                        this.state.stock["latestPrice"] * this.state.quantity
+                      ).toFixed(2)}
+                    </span>
+                  </div>
+                  {this.state.showError ? (
+                    <div>You can't buy this amount of stocks</div>
+                  ) : null}
+                  <button
+                    className="purchase-button"
+                    onClick={this.changeModal}
+                  >
+                    Purchase
+                  </button>
                 </div>
-                {this.state.showError ? (
-                  <div>You can't buy this amount of stocks</div>
-                ) : null}
-                <button onClick={this.changeModal}>Purchase</button>
               </div>
             </div>
           ) : null}
           {this.state.modalSwitch ? (
             <div className="confirmation">
               <div className="confirm-box">
-                <div>Do you want to continue this transaction?</div>
+                <h3>Do you want to continue this transaction?</h3>
                 <div className="confirm-buttons">
                   <button onClick={this.purchaseStock}>Yes</button>
                   <button onClick={this.changeModal}>No</button>

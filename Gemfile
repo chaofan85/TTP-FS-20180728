@@ -57,7 +57,7 @@ group :development do
   gem 'binding_of_caller'
 
   # Gotta have byebug...
-  gem 'byebug'
+  # gem 'byebug'
 
   # pry > irb
   gem 'pry-rails'
